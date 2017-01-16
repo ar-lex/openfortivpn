@@ -31,4 +31,5 @@ override_dh_auto_configure:
 	automake --add-missing
 	./configure --prefix=/usr --sysconfdir=/etc
 
-
+override_dh_installdocs:
+	dh_installdocs README.md
