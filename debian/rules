@@ -29,6 +29,6 @@ export DEB_CFLAGS_MAINT_APPEND  = -Wno-unused-function
 override_dh_auto_configure:
 	aclocal
 	automake --add-missing
-	./configure --prefix=$(CURDIR)/debian/openfortivpn/usr --sysconfdir=$(CURDIR)/debian/openfortivpn/etc
+	./configure --prefix=/usr --sysconfdir=/etc
 
 
