@@ -4,7 +4,6 @@ Source: https://github.com/adrienverge/openfortivpn
 
 Files: *
 Copyright: Copyright (C) 2015 Adrien Vergé
-           <years> <likewise for another author>
 License: GPL-3+
 
 Files: debian/*
