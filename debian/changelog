@@ -1,5 +1,5 @@
-openfortivpn (1.2.0-1) unstable; urgency=low
+openfortivpn (1.2.0-1) experimental; urgency=low
 
   * Initial release (Closes: #848138)
 
- -- Sandro Tosi <morph@debian.org>  Sun, 15 Jan 2017 21:43:49 -0500
+ -- Sandro Tosi <morph@debian.org>  Wed, 25 Jan 2017 19:36:41 -0500
