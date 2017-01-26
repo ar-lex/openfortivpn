@@ -6,8 +6,8 @@ Uploaders: Dimitri Papadopoulos Orfanos <dimitri.papadopoulos@gmail.com>
 Build-Depends: debhelper (>= 10), automake, autoconf, libssl-dev
 Standards-Version: 3.9.8
 Homepage: https://github.com/adrienverge/openfortivpn
-#Vcs-Git: git://anonscm.debian.org/collab-maint/openfortivpn.git
-#Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/openfortivpn.git;a=summary
+Vcs-Git: https://anonscm.debian.org/git/collab-maint/openfortivpn.git
+Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/openfortivpn.git
 
 Package: openfortivpn
 Architecture: any
