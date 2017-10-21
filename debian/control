@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Sandro Tosi <morph@debian.org>
 Uploaders: Dimitri Papadopoulos Orfanos <dimitri.papadopoulos@gmail.com>
-Build-Depends: debhelper (>= 10), automake, autoconf, libssl-dev
+Build-Depends: debhelper (>= 10), automake, autoconf, libssl-dev, pkg-config
 Standards-Version: 3.9.8
 Homepage: https://github.com/adrienverge/openfortivpn
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/openfortivpn.git
