@@ -56,7 +56,7 @@ int add_trusted_cert(struct vpn_config *cfg, const char *digest)
  * @params[in] str  the string to read from
  * @return          0 or 1 if successful, < 0 if unrecognized value
  */
-static int strtob(const char* str)
+int strtob(const char* str)
 {
 	if (str[0] == '\0') {
 		return 0;
@@ -171,6 +171,12 @@ int load_config(struct vpn_config *cfg, const char *filename)
 		} else if (strcmp(key, "password") == 0) {
 			strncpy(cfg->password, val, FIELD_SIZE - 1);
 			cfg->password[FIELD_SIZE] = '\0';
+		} else if (strcmp(key, "otp") == 0) {
+			strncpy(cfg->otp, val, FIELD_SIZE - 1);
+			cfg->otp[FIELD_SIZE] = '\0';
+		} else if (strcmp(key, "realm") == 0) {
+			strncpy(cfg->realm, val, FIELD_SIZE - 1);
+			cfg->realm[FIELD_SIZE] = '\0';
 		} else if (strcmp(key, "set-dns") == 0) {
 			int set_dns = strtob(val);
 			if (set_dns < 0) {
@@ -187,6 +193,15 @@ int load_config(struct vpn_config *cfg, const char *filename)
 				continue;
 			}
 			cfg->set_routes = set_routes;
+		} else if (strcmp(key, "half-internet-routes") == 0) {
+			int half_internet_routes = strtob(val);
+			if (half_internet_routes < 0) {
+				log_warn("Bad half-internet-routes in config file:" \
+				         " \"%s\".\n",
+				         val);
+				continue;
+			}
+			cfg->half_internet_routes = half_internet_routes;
 		} else if (strcmp(key, "pppd-use-peerdns") == 0) {
 			int pppd_use_peerdns = strtob(val);
 			if (pppd_use_peerdns < 0) {
@@ -195,6 +210,20 @@ int load_config(struct vpn_config *cfg, const char *filename)
 				continue;
 			}
 			cfg->pppd_use_peerdns = pppd_use_peerdns;
+		} else if (strcmp(key, "pppd-log") == 0) {
+			cfg->pppd_log = strdup(val);
+		} else if (strcmp(key, "pppd-plugin") == 0) {
+			cfg->pppd_plugin = strdup(val);
+		} else if (strcmp(key, "pppd-ipparam") == 0) {
+			cfg->pppd_ipparam = strdup(val);
+		} else if (strcmp(key, "use-syslog") == 0) {
+			int use_syslog = strtob(val);
+			if (use_syslog < 0) {
+				log_warn("Bad use-syslog in config file: \"%s\".\n",
+				         val);
+				continue;
+			}
+			cfg->use_syslog = use_syslog;
 		} else if (strcmp(key, "trusted-cert") == 0) {
 			if (strlen(val) != SHA256STRLEN - 1) {
 				log_warn("Bad certificate sha256 digest in "
@@ -211,6 +240,16 @@ int load_config(struct vpn_config *cfg, const char *filename)
 			cfg->user_cert = strdup(val);
 		} else if (strcmp(key, "user-key") == 0) {
 			cfg->user_key = strdup(val);
+		} else if (strcmp(key, "insecure-ssl") == 0) {
+			int insecure_ssl = strtob(val);
+			if (insecure_ssl < 0) {
+				log_warn("Bad insecure-ssl in config file: \"%s\".\n",
+				         val);
+				continue;
+			}
+			cfg->insecure_ssl = insecure_ssl;
+		} else if (strcmp(key, "cipher-list") == 0) {
+			cfg->cipher_list = strdup(val);
 		} else {
 			log_warn("Bad key in config file: \"%s\".\n", key);
 			goto err_free;
